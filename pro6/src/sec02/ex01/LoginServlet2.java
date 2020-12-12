@@ -1,0 +1,66 @@
+package sec02.ex01;
+
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+/**
+ * Servlet implementation class LoginServlet2
+ */
+@WebServlet("/login2")
+public class LoginServlet2 extends HttpServlet {
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public LoginServlet2() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see Servlet#init(ServletConfig)
+	 */
+	public void init(ServletConfig config) throws ServletException {
+		System.out.println("init 메서드 호출");
+	}
+
+	/**
+	 * @see Servlet#destroy()
+	 */
+	public void destroy() {
+		System.out.println("destroy 메서드 호출");
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("test/html;charset=utf-8");
+		//setContentType을 이용해 응답할 데이터 종류가 HTML임을 설정합니다.
+		PrintWriter out = response.getWriter();
+		//HttpServletResponse 객체의 getWriter()를 이용해 출력 스트림 PrintWriter 객체를 받아옵니다.
+		
+		String id = request.getParameter("user_id");
+		String pw = request.getParameter("user_pw");
+		
+		
+		String data ="<html>";
+		data+="<body>";
+		data+="아이디 : "+id;
+		data+="<br>";
+		data+="패스워드 : "+pw;
+		data+="</body>";
+		data+="</html>";
+		out.print(data);
+	}
+
+}
